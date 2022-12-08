@@ -1,0 +1,24 @@
+
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="col-sm-6">
+
+        <div class="footer-blurb">
+            <div class="container">
+                <div class="row">
+
+
+
+
+
+
+
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </div><!--/Center Column-->
+
+@endsection

@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Category\Post;
+
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Settings;
+use Illuminate\Http\Request;
+use App\Models\Post;
+
+class IndexController extends Controller
+{
+
+    public function index(Category $category){
+
+        $posts = $category->posts()->paginate(4);
+
+        return view('category.post.index', compact('posts', 'category'));
+
+    }
+
+
+
+
+
+
+}
