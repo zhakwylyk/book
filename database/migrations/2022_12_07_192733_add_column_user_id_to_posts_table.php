@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->index('user_id', 'post_user_idx');
-            $table->foreign('user_id', 'post_user_fk')->on('users')->references('id');;
+            $table->foreign('user_id', 'post_user_fk')->on('users')->references('id')->onDelete('cascade');;
         });
     }
 

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->index('post_id', 'comments_post_idx');
             $table->index('user_id', 'comments_user_idx');
 
-            $table->foreign('post_id', 'comments_post_fk')->on('posts')->references('id');
+            $table->foreign('post_id', 'comments_post_fk')->on('posts')->references('id')->onDelete('cascade');
             $table->foreign('user_id', 'comments_user_fk')->on('users')->references('id');
             $table->timestamps();
         });

@@ -12,10 +12,10 @@ class IndexController extends Controller
 {
 
     public function index(Category $category){
-
+        $categories = Category::all();
         $posts = $category->posts()->paginate(4);
-
-        return view('category.post.index', compact('posts', 'category'));
+        $settings = Settings::all();
+        return view('category.post.index', compact('posts', 'category','categories','settings'));
 
     }
 

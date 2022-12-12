@@ -42,6 +42,8 @@
                           <tr>
                               <td>{{$comment->id}}</td>
                               <td>{{$comment->message}}</td>
+
+
                               <td class="text-center"><a href="{{ route('personal.comment.edit', $comment->id) }}" class="text-success">Edit</a> </td>
                               <td class="text-center">
                                <form action="{{ route('personal.comment.delete', $comment->id) }}"

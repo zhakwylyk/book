@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Impact Bootstrap Template - Blog Details</title>
+    <title>Библиотека электронных книг</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -58,11 +58,14 @@
 <header id="header" class="header d-flex align-items-center">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a href="{{ route('post.index') }}" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.png" alt=""> -->
-            <h1>KGBOOK<span>.</span></h1>
-        </a>
+        @foreach($settings as $setting)
+            <a href="{{ route('post.index') }}" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+
+                <h1>{{ $setting->logo  }}<span>.</span></h1>
+            </a>
+        @endforeach
 
 
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -88,9 +91,20 @@
         <nav>
             <div class="container">
                 <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Blog</li>
-{{--                    {{ $post->category->title }}--}}
+                    <li>
+
+                        @auth()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Личный кабинет</a>
+                        @endauth
+
+
+
+                        @guest()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Войти</a><br>
+                            <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
+                        @endguest
+
+                    </li>
                 </ol>
             </div>
         </nav>
@@ -196,27 +210,17 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-6 footer-links">
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy policy</a></li>
-                </ul>
-            </div>
 
             <div class="col-lg-2 col-6 footer-links">
-                <h4>Our Services</h4>
-                <ul>
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Product Management</a></li>
-                    <li><a href="#">Marketing</a></li>
-                    <li><a href="#">Graphic Design</a></li>
-                </ul>
+                <h4>Категории</h4>
+                @foreach($categories as $category)
+                    <ul>
+                        <li><a href="{{ route('category.post.index', $category->id) }}">{{ $category->title }}</a></li>
+                    </ul>
+                @endforeach
             </div>
+
+
 
             <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                 <h4>Contact Us</h4>
@@ -224,7 +228,7 @@
                     A108 Adam Street <br>
                     New York, NY 535022<br>
                     United States <br><br>
-                    <strong>Phone:</strong> +1 5589 55488 55<br>
+                    <strong>Phone:</strong> +996701846786<br>
                     <strong>Email:</strong> info@example.com<br>
                 </p>
 
@@ -247,6 +251,10 @@
     </div>
 
 </footer><!-- End Footer -->
+
+
+
+
 <!-- End Footer -->
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

@@ -71,7 +71,16 @@
                 <a href="{{ route('admin.setting.index') }}" class="nav-link">
                     <i class="nav-icon far fa-image"></i>
                     <p>
-                        Настройка
+                        Изменить logo
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.banner.index') }}" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                        Баннер
                     </p>
                 </a>
             </li>

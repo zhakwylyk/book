@@ -11,7 +11,6 @@ class IndexController extends Controller
     public function index()
     {
         $posts = auth()->user()->UserPost;
-
         return view('personal.post.index', compact('posts'));
     }
 

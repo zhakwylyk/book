@@ -14,6 +14,7 @@ class IndexController extends Controller
 {
     public function index()
     {
+
         $comments = auth()->user()->comments;
         return view('personal.comment.index' , compact('comments'));
 

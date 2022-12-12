@@ -13,28 +13,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/migrate', function(){
+    \Artisan::call('migrate');
+    dd('migrated!');
+});
+
+Route::get('/rollback',function(){
+    Artisan::call('migrate:rollback');
+});
+
+
+
 Route::group(['namespase' => 'Main'], function (){
     Route::get('/', [App\Http\Controllers\Main\IndexController::class, 'index'])->name('main.index');
 });
 
 
-
 Route::group(['namespase' => 'Post', 'prefix' => 'post'],function (){
     Route::get('/', [App\Http\Controllers\Post\IndexController::class, 'index'])->name('post.index');
     Route::get('/{post}', [App\Http\Controllers\Post\ShowController::class, 'index'])->name('post.show');
-
     //post/comments
     Route::group(['namespase' => 'Comment', 'prefix' => '{post}/comments'], function () {
         Route::post('/',[App\Http\Controllers\Post\Comment\StoreController::class,'index'])->name('post.comment.store');
     });
-
     //post/lake
     Route::group(['namespase' => 'Like', 'prefix' => '{post}/lakes'], function () {
         Route::post('/',[App\Http\Controllers\Post\Lake\StoreController::class,'index'])->name('post.lake.store');
     });
-
 });
 
+//////////////////////////////////////CATEGORY////////////////////////////////////////////
 Route::group(['namespase' => 'Category', 'prefix' => 'categories'],function (){
     Route::get('/', [App\Http\Controllers\Category\IndexController::class, 'index'])->name('category.index');
 
@@ -87,6 +95,16 @@ Route::group(['namespase' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/',[\App\Http\Controllers\Admin\Main\IndexController::class, 'index'])->name('admin.main.index');
     });
 
+
+    Route::group(['namespase' => 'Banner', 'prefix' => 'ads'], function (){
+        Route::get('/',[App\Http\Controllers\Admin\Banner\IndexController::class,'index'])->name('admin.banner.index');
+        Route::get('/create',[App\Http\Controllers\Admin\Banner\CreateController::class,'index'])->name('admin.banner.create');
+        Route::post('/',[App\Http\Controllers\Admin\Banner\StoreController::class,'index'])->name('admin.banner.store');
+        Route::get('/{ads}',[App\Http\Controllers\Admin\Banner\ShowController::class,'index'])->name('admin.banner.show');
+        Route::get('/{ads}/edit',[App\Http\Controllers\Admin\Banner\EditController::class,'index'])->name('admin.banner.edit');
+        Route::patch('/{ads}',[App\Http\Controllers\Admin\Banner\UpdateController::class,'index'])->name('admin.banner.update');
+        Route::delete('/{ads}',[App\Http\Controllers\Admin\Banner\DeleteController::class,'index'])->name('admin.banner.delete');
+    });
 
 
     Route::group(['namespase' => 'Setting', 'prefix' => 'settings'], function (){

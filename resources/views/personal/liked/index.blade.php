@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{$post->id}}</td>
                             <td>{{$post->title}}</td>
-                            <td><a href="{{ route('admin.post.show', $post->id) }}">Post</a></td>
+                             <td><a href="{{ route('post.show', $post->id) }}">Post</a></td>
                             <td><a href="{{ route('admin.post.edit', $post->id) }}">Edit</a></td>
                             <td>
                                 <form action="{{ route('personal.liked.delete', $post->id) }}"

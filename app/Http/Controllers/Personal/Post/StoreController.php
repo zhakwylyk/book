@@ -12,14 +12,23 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
-    public function index(StoreRequest $request){
+    public function index(Post $post, StoreRequest $request){
         $data = $request->validated();
+
+        $data ['user_id'] = auth()->user()->id;
+
+        $posts ['post_id'] = $post->id;
         $tagsIds = $data ['tag_ids'];
         unset($data ['tag_ids']);
         $data ['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
         $post = Post::firstOrCreate($data);
         $post->tags()->attach($tagsIds);
-        return redirect()->route('personal.post.index');
+
+
+        return redirect()->route('personal.post.index',compact('posts'));
+
+
+
 
 
     }

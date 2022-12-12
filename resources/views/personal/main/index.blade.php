@@ -3,9 +3,17 @@
 @section('content')
 
 
-        <h1 class="m-0"></h1>
 
 
+        <h1 class="m-0">Самые читаемые книги за 2022 год </h1>
+<br>
+
+        @foreach($likedPosts as $post)
+        <div class="row">
+            <div class="col-sm">
+                <img src="{{asset('storage/' . $post->preview_image) }}" width="200" height="290">
+            </div>
+            @endforeach
 
 
 

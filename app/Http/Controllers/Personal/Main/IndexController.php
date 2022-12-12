@@ -14,7 +14,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-
-        return view('personal.main.index');
+        $likedPosts = Post::withCount('liked')->orderBy('liked_count', 'DESC')->get()->take(5);
+        return view('personal.main.index',compact('likedPosts'));
     }
 }
+
